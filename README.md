@@ -63,7 +63,7 @@ For our experiments, we utilized two different models for CIFAR-10 and ImageNet:
    ```
 
 ## Running The Evaluation
-To replicate the evaluation performed in the paper on the CIFAR-10 dataset, simply run the notebook provided in this repository. Inside the notebook, there is a dedicated section where you can select the hyperparameters for the defense, choose which attacks to include, and specify the baselines you wish to compare against.
+To replicate the evaluation performed in the paper on the CIFAR-10 dataset, simply run the notebook provided in this repository (Counter-Samples_evaluation.ipynb). Inside the notebook, there is a dedicated section where you can select the hyperparameters for the defense, choose which attacks to include, and specify the baselines you wish to compare against.
 
 Once the evaluation is complete, all results will be saved automatically in a newly created Results directory. Each attack and baseline you select will have its own corresponding JSON file that describes the detailed results of the evaluation.
 
