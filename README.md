@@ -55,10 +55,12 @@ For our experiments, we utilized two different models for CIFAR-10 and ImageNet:
 2. **ResNet50 for ImageNet**:
    For the ImageNet dataset, we used the widely adopted ResNet50 architecture. This model is available via the torchvision library with pre-trained weights on ImageNet.
    These models were selected to evaluate the performance and robustness of our method on both small and large-scale datasets.
- ```python
+
+    Example of loading the model:
+   ```python
    import torchvision.models as models
    model = models.resnet50(pretrained=True)
-```
+   ```
 
 ## Running The Evaluation
 To replicate the evaluation performed in the paper on the CIFAR-10 dataset, simply run the notebook provided in this repository. Inside the notebook, there is a dedicated section where you can select the hyperparameters for the defense, choose which attacks to include, and specify the baselines you wish to compare against.
