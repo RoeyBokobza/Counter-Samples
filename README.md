@@ -18,10 +18,53 @@ where `f` is the target model, `α` is the step size, ∇<sub>x*<sub>t</sub></su
 To enhance robustness against more advanced attacks, we add a small amount of Gaussian noise `z ∼ N(μ, σ²)` to each query before applying the transformation. The final defense mechanism is given by:
 `f(x*) = f(T(x + z); θ)`
 
+**The Algorithm:** <br>
+<br>
+![image](https://github.com/user-attachments/assets/b9d0e759-894a-4feb-8e47-1001c9ecc04b)
+
+
 **Key Features:**
 
  - **Preservation of clean task performance**: Counter-Samples maintains the model's accuracy on legitimate inputs, ensuring no degradation in performance.
  - **State-of-the-art (SOTA) defense**: Counter-Samples demonstrates superior performance against SOTA black-box query-based attacks compared to other preprocessors. Additionally, it outperforms Adversarial Training (AT) in overall results.
 
+
+**Evaluation Datasets**  
+In our paper, we evaluated the proposed method on both the CIFAR-10 and ImageNet datasets. However, in this notebook, we use only the CIFAR-10 dataset due to its smaller size and faster runtime, making it more suitable for experimentation within this environment. The notebook automates the process of downloading and setting up the CIFAR-10 dataset when run sequentially.
+
+To download the CIFAR-10 dataset, the following code (part of the notebook) is used:
+
+```bash
+wget -P /content/BlackboxBench/data https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz
+tar -xzvf /content/BlackboxBench/data/cifar-10-python.tar.gz -C /content/BlackboxBench/data
+```
+## Models
+
+For our experiments, we utilized two different models for CIFAR-10 and ImageNet:
+
+1. **ResNet20 for CIFAR-10**:  
+   We used the ResNet20 architecture specifically designed for the CIFAR-10 dataset. The pre-trained weights were obtained from the `torch.hub` library. You can access and load this model directly from the following link:  
+   [Torch Hub ResNet20 CIFAR-10](https://pytorch.org/hub/nvidia_deeplearningexamples_resnet20_cifar10/)
+
+   Example of loading the model:
+   ```python
+   import torch
+   model = torch.hub.load('pytorch/vision:v0.10.0', 'resnet20', pretrained=True)
+   ```
+
+2. **ResNet50 for ImageNet**:
+   For the ImageNet dataset, we used the widely adopted ResNet50 architecture. This model is available via the torchvision library with pre-trained weights on ImageNet.
+   These models were selected to evaluate the performance and robustness of our method on both small and large-scale datasets.
+ ```python
+   import torchvision.models as models
+   model = models.resnet50(pretrained=True)
+```
+
+## Running The Evaluation
+To replicate the evaluation performed in the paper on the CIFAR-10 dataset, simply run the notebook provided in this repository. Inside the notebook, there is a dedicated section where you can select the hyperparameters for the defense, choose which attacks to include, and specify the baselines you wish to compare against.
+
+Once the evaluation is complete, all results will be saved automatically in a newly created Results directory. Each attack and baseline you select will have its own corresponding JSON file that describes the detailed results of the evaluation.
+
+   
 
 
