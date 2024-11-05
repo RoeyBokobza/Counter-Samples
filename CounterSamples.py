@@ -1,7 +1,7 @@
 from art.defences.preprocessor import GaussianAugmentation
 import torch
 
-def Counter_Samples(iters=10,model x_preprocessed, k=0.03, sigma=0.01):
+def Counter_Samples(iters=10,model,x_preprocessed, k=0.03, sigma=0.01):
     """
     The implemetation of CounterSamples - this is only one implementation, and it could be implemented in multiple ways. 
     It acts as a preprocessor, taking preprocessed samples (x_preprocessed), the number of optimization iterations (iters), 
